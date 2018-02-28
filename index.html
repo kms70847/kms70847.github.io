@@ -35,20 +35,14 @@ function makeSoundButton(source, name){
 }
 function populateCategories(){
     var sounds_by_category = {
-        "Instrumental": [
-            ["resources/british_man.wav", "Test1"],
-            ["resources/british_man.wav", "Test2"],
-            ["resources/british_man.wav", "Test3"],
-        ],
         "Energetic": [
-            ["resources/bike_bell.ogg", "Bell"],
-            ["resources/british_man.wav", "Test2"],
-            ["resources/british_man.wav", "Test3"],
+            ["resources/bodies.ogg", "Bodies"]
         ],
         "Uplifting": [
-            ["resources/bike_bell.ogg", "Bell1"],
-            ["resources/bike_bell.ogg", "Bell2"],
-            ["resources/bike_bell.ogg", "Bell3"],
+            ["resources/firework.ogg", "Firework"]
+        ],
+        "Instrumental": [
+            ["resources/titan.ogg", "Titan"],
         ]
     }
     
@@ -109,12 +103,6 @@ input {
 
 <div class="accordion">
   <div class="accordion-tab">
-    <button class="accordion-tab-header">Instrumental</button>
-    <div class="accordion-tab-content">
-    </div>
-  </div>
-
-  <div class="accordion-tab">
     <button class="accordion-tab-header">Energetic</button>
     <div class="accordion-tab-content">
     </div>
@@ -122,6 +110,12 @@ input {
   
   <div class="accordion-tab">
     <button class="accordion-tab-header">Uplifting</button>
+    <div class="accordion-tab-content">
+    </div>
+  </div>
+
+  <div class="accordion-tab">
+    <button class="accordion-tab-header">Instrumental</button>
     <div class="accordion-tab-content">
     </div>
   </div>
