@@ -29,7 +29,23 @@ function makeSoundButton(source, name){
         box.querySelector(".loadingMessage").style.display="none";
         input.style.display="block";
     })
-    input.onclick = function(){audio.play();};
+    input.onclick = function(){
+        if(audio.paused){
+            audio.play();
+            //reset all other audios that may be playing
+            for(let obj of document.querySelectorAll("audio")){
+                if (obj != audio && !obj.paused){
+                    obj.pause();
+                    obj.fastSeek(0);
+                }
+            }
+        }
+        else{
+            audio.pause();
+            audio.fastSeek(0);
+        }
+
+    };
     audio.src = source;
     return box;
 }
