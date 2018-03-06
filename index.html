@@ -80,7 +80,6 @@ function populateCategories(){
     for(const div of document.body.querySelectorAll(".accordion-tab")){
         let name = div.querySelector(".accordion-tab-header").innerHTML;
         divs_by_category[name] = div;
-        console.log(name)
     }
     Object.keys(sounds_by_category).forEach(function(category){
         let content = divs_by_category[category].querySelector(".accordion-tab-content");
