@@ -1,158 +1,33 @@
-<html lang="en">
-<head>
-<script>
-function initAccordion(container) {
-    let currentIndex = -1;
-    function update() {
-        const tabs = container.querySelectorAll('.accordion-tab');
-        for (let i = 0; i < tabs.length; i++) {
-            tabs[i].classList.toggle('collapsed', i !== currentIndex);
-        }
-    }
-    const tabs = container.querySelectorAll('.accordion-tab');
-    for (let i = 0; i < tabs.length; i++) {
-        tabs[i].querySelector('.accordion-tab-header').addEventListener('click', () => {
-            currentIndex = currentIndex === i ? -1 : i;
-            update();
-        });
-    }
-    update();
-}
-function makeSoundButton(source, name){
-    var template = document.querySelector("#templates > .audioBox");
-    var box = template.cloneNode(true);
-    
-    var input = box.querySelector("input");
-    input.value = name;
-    var audio = box.querySelector("audio");
-    audio.addEventListener("canplaythrough", function(){
-        box.querySelector(".loadingMessage").style.display="none";
-        input.style.display="block";
-    })
-    input.onclick = function(){
-        if(audio.paused){
-            audio.play();
-            //reset all other audios that may be playing
-            for(let obj of document.querySelectorAll("audio")){
-                if (obj != audio && !obj.paused){
-                    obj.pause();
-                    obj.fastSeek(0);
-                }
+<html>
+    <body>
+
+        Enter text here:
+        <br/>
+        <textarea rows="10" cols="100" id="userinput"></textarea>
+
+        <br/>
+        Then copy the markup here:
+        <br/>
+        <textarea rows="10" cols="100" id="spoileroutput"/></textarea>
+
+        <script type="text/javascript">
+            function urlsafe_encode(s){
+                return btoa(s).replace(/\+/g, "-").replace(/\//g, "_")
+            }    
+
+            function encode_utf8(s){
+                return unescape(encodeURIComponent(s));
             }
-        }
-        else{
-            audio.pause();
-            audio.fastSeek(0);
-        }
 
-    };
-    audio.src = source;
-    return box;
-}
-function populateCategories(){
-    var sounds_by_category = {
-        "Energetic": [
-            ["resources/bodies.ogg", "Bodies"],
-            ["resources/duel.ogg", "Duel"],
-            ["resources/flames.ogg", "Flames"],
-            ["resources/harder.ogg", "Harder"],
-            ["resources/punch.ogg", "Punch"],
-            ["resources/row.ogg", "Row"],
-            ["resources/push.ogg", "Push"]
-        ],
-        "Uplifting": [
-            ["resources/firework.ogg", "Firework"],
-            ["resources/middle.ogg", "Middle"],
-            ["resources/perfect.ogg", "Perfect"],
-            ["resources/scars.ogg", "Scars"],
-            ["resources/shake.ogg", "Shake"],
-            ["resources/star.ogg", "Star"],
-            ["resources/way.ogg", "Way"],
-            ["resources/alright.ogg", "Alright"]
-        ],
-        "Instrumental": [
-            ["resources/titan.ogg", "Titan"],
-            ["resources/battle.ogg", "Battle"],
-            ["resources/fates.ogg", "Fates"],
-            ["resources/rock.ogg", "Rock"],
-            ["resources/sand.ogg", "Sand"],
-            ["resources/running.ogg", "running"]
-        ]
-    }
-    
-    var divs_by_category = {};
-    for(const div of document.body.querySelectorAll(".accordion-tab")){
-        let name = div.querySelector(".accordion-tab-header").innerHTML;
-        divs_by_category[name] = div;
-    }
-    Object.keys(sounds_by_category).forEach(function(category){
-        let content = divs_by_category[category].querySelector(".accordion-tab-content");
-        for(const args of sounds_by_category[category]){
-            content.appendChild(makeSoundButton.apply(null, args));
-        }
-    });
-}
-window.onload = function(){
-    for (const accordion of document.querySelectorAll('.accordion')) {
-        initAccordion(accordion);
-    }
-    populateCategories();
-}
-</script>
+            function spoilerize(x){
+                return "[view spoiler](http://sopython.com/spoiler/" + encodeURIComponent(urlsafe_encode(encode_utf8(x))) + ")"
+            }
 
-<style>
-.accordion-tab {
-  border: 1px solid silver;
-  width: 100%;
-}
-.accordion-tab-header {
-  display: block;
-  width: 100%;
-  border: 0;
-  background: #EEE;
-  cursor: pointer;
-  font-size: 5vw;
-}
+            window.setInterval(function(){
+                var userinput = document.querySelector("#userinput").value;
+                document.querySelector("#spoileroutput").value = spoilerize(userinput);
+            }, 500);
+        </script>
 
-.accordion-tab.collapsed .accordion-tab-content {
-  display: none;
-}
-
-input {
-    font-size: 10vw;
-}
-</style>
-
-</head>
-<body>
-
-<div id="templates" style="display:none">
-    <div class="audioBox">
-        <audio></audio>
-        <span class="loadingMessage">Loading...</span>
-        <input type="button" value="Name" style="display:none">
-    </div>
-</div>
-
-<div class="accordion">
-  <div class="accordion-tab">
-    <button class="accordion-tab-header">Energetic</button>
-    <div class="accordion-tab-content">
-    </div>
-  </div>
-  
-  <div class="accordion-tab">
-    <button class="accordion-tab-header">Uplifting</button>
-    <div class="accordion-tab-content">
-    </div>
-  </div>
-
-  <div class="accordion-tab">
-    <button class="accordion-tab-header">Instrumental</button>
-    <div class="accordion-tab-content">
-    </div>
-  </div>
-</div>
-
-</body>
+    </body>
 </html>
