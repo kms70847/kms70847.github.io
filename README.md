@@ -1,1 +1,1 @@
-Temporrary spoiler encodder page until the SOPython one gets deployed.
+Temporrary spoiler encoder page until the SOPython one gets deployed.
