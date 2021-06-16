@@ -1,5 +1,7 @@
 Proof of concept of a pure javascript NGUI save file reader.
 
+[Try The Demo](https://kms70847.github.io/)
+
 # Dependencies
 `ngui_reader.bundled.js` is a standalone js file that requires no explicit dependencies. Include it in your html and call `decode_ngu_save(yourArrayBufFer)`.
 
