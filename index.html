@@ -1,33 +1,24 @@
 <html>
     <body>
+        <input type="file" id="userdata"/>
+        </br>
+        <textarea id="output" rows=100 cols=125></textarea>
 
-        Enter text here:
-        <br/>
-        <textarea rows="10" cols="100" id="userinput"></textarea>
-
-        <br/>
-        Then copy the markup here:
-        <br/>
-        <textarea rows="10" cols="100" id="spoileroutput"/></textarea>
-
+        <script src="ngui_reader.bundled.js"></script>
         <script type="text/javascript">
-            function urlsafe_encode(s){
-                return btoa(s).replace(/\+/g, "-").replace(/\//g, "_")
-            }    
-
-            function encode_utf8(s){
-                return unescape(encodeURIComponent(s));
+            var userdata = document.getElementById("userdata");
+            function file_loaded(buffer){
+                console.log("file loaded.");
+                let result = decode_ngu_save(buffer);
+                document.getElementById("output").value = JSON.stringify(result);
+                console.log(result);
+                console.log("~fin~");
             }
-
-            function spoilerize(x){
-                return "[view spoiler](http://sopython.com/spoiler/" + encodeURIComponent(urlsafe_encode(encode_utf8(x))) + ")"
+            userdata.onchange = function(e){
+                if (userdata.files.length != 0){
+                    userdata.files[0].arrayBuffer().then(file_loaded);
+                }
             }
-
-            window.setInterval(function(){
-                var userinput = document.querySelector("#userinput").value;
-                document.querySelector("#spoileroutput").value = spoilerize(userinput);
-            }, 500);
         </script>
-
     </body>
 </html>
