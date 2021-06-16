@@ -1,0 +1,532 @@
+Enum TileDirection;
+Enum TechNames;
+Enum beaconBonusType;
+Enum FeatureType;
+Enum BuildingType;
+//#-34
+class UnityEngine.Random+State{
+    Int32 s0;
+    Int32 s1;
+    Int32 s2;
+    Int32 s3;
+}
+Enum workOrderSize;
+Enum workOrderPodDisplay;
+Enum combatMode;
+Enum UIThemeMode;
+//#1
+class PlayerData{
+    Settings settings;
+    FactoryData factoryData;
+    Materials materials;
+    Research research;
+    Combat combat;
+    WorkOrders workOrders;
+    Arbitrary arbitrary;
+    MuslukkPit pit;
+    Base playerBase;
+    Relics relics;
+    Experiments experiments;
+    Tutorial tutorial;
+    Journal journal;
+    DailySpinData spin;
+    Farm farm;
+}
+//#3
+class Settings{
+    gameVersion version;
+    Int32 number;
+    Boolean tooltipsOn;
+    Boolean timedTooltipsOn;
+    Int32 tutorialState;
+    Int32 lastTimeStamp;
+    Double totalTimePlayed;
+    Int32 numberDisplayMode;
+    Boolean colourblindMode;
+    Int32 tileOverlayID;
+    Boolean beaconLock;
+    Boolean fancyspins;
+    Boolean damageFloatersOn;
+    Boolean fancierGainLossColour;
+    UIThemeMode theme;
+    List<Boolean> steamAchievements;
+    Double gainLossBuffer;
+}
+//#4
+class FactoryData{
+    List<MapData> maps;
+    List<BuildingType> favsList;
+    Boolean blueprintsUnlocked;
+}
+//#5
+class Materials{
+    List<MaterialData> materials;
+}
+//#6
+class Research{
+    List<Upgrade> upgrades;
+    FilterData filter;
+}
+//#7
+class Combat{
+    List<EncounterData> encounterData;
+    Int32 selectedEncounter;
+    Boolean combatUnlocked;
+    List<PlayerPortraits> portraits;
+    Int32 selectedPortrait;
+    combatMode combatMode;
+    List<Int32> unlockedISOPODSprites;
+    Int32 selectedFloor;
+    Int32 highestClearedFloor;
+    Double savedBDSMGain;
+    Double savedElemGain;
+}
+//#8
+class WorkOrders{
+    List<WorkOrderRecipe> curWorkOrder;
+    WorkOrder curOrder;
+    Int64 workOrderTier;
+    Boolean workOrderActive;
+    Int64 numOrdersCompleted;
+    Int64 curWorkOrderTier;
+    Int64 highestTierCompleted;
+    Int32 curCustomerPortraitID;
+    Int32 curCustomerRemarkID;
+    workOrderPodDisplay podDisplayMode;
+    workOrderSize selectedSize;
+    Double workOrderRefreshTimer;
+    Int32 bankedWorkOrders;
+    Int64 curBDSM;
+    UnityEngine.Random+State numMaterialsState;
+    UnityEngine.Random+State materialAmountsState;
+    List<Upgrade> upgrades;
+    FilterData filter;
+}
+//#9
+class Arbitrary{
+    Int64 curAP;
+    Int64 lifeTimeAPGained;
+    List<Boolean> itemsSeen;
+    Boolean newbiePackBought;
+    Boolean ascendedPack1Bought;
+    Boolean ascendedPack2Bought;
+    Boolean ascendedPack3Bought;
+    Boolean ascendedPack4Bought;
+    Int32 speedChipAlphaCount;
+    Double speedChipAlphaTime;
+    Int32 speedChipBetaCount;
+    Int32 speedChipDeltaCount;
+    Double speedChipDeltaTime;
+    Int32 productionChipAlphaCount;
+    Double productionChipAlphaTime;
+    Int32 productionChipBetaCount;
+    Int32 productionChipDeltaCount;
+    Double productionChipDeltaTime;
+    Int32 efficiencyChipAlphaCount;
+    Double efficiencyChipAlphaTime;
+    Int32 efficiencyChipBetaCount;
+    Int32 efficiencyChipDeltaCount;
+    Double efficiencyChipDeltaTime;
+    Int32 normalPoops;
+    Int32 superPoops;
+    Boolean hasTestItem;
+    Int32 APDecoSlots;
+    Int32 APBreeds;
+    Int32 APPlots;
+    Int32 tutBPSlots;
+    Int32 fleshBPSlots;
+    Int32 tronneBPSlots;
+    Int32 candyBPSlots;
+    Int32 MMBPSlots;
+    Int32 experimentFreezeSlots;
+    Int32 experimentTagSlots;
+    Int32 farmingBreedPlots;
+    Int32 farmingPlantPlots;
+    Int32 experimentQueueSlots;
+    Int32 experimentRewardSlots;
+    Int32 experimentRewardFreezeSlots;
+    Boolean extraSpinBankBought;
+    Boolean bigAndSmallDeco;
+    Boolean factoryLightBought;
+    Boolean farmingLightBought;
+}
+//#10
+class MuslukkPit{
+    List<PitItemData> items;
+    Int64 savedPitPoints;
+}
+//#11
+class Base{
+    List<Decoration> decorations;
+    Int32 curUnlockIndex;
+    List<Int32> unlockedBases;
+}
+//#12
+class Relics{
+    List<Relic> relic;
+}
+//#13
+class Experiments{
+    List<Experiment> activeExperiments;
+    List<Experiment> queuedExperiments;
+    List<ExperimentReward> experimentRewards;
+    AllBuff experimentBuffs;
+    UnityEngine.Random+State experimentState;
+    UnityEngine.Random+State rewardState;
+    List<Int64> resources;
+    List<TagData> tags;
+    Double rerollTimer;
+    Boolean unlocked;
+}
+//#14
+class Tutorial{
+    Int32 curTutorialID;
+    List<Int32> completedTutorials;
+}
+//#15
+class Journal{
+    List<JournalEntryData> entries;
+}
+//#16
+class DailySpinData{
+    Int32 completedSpins;
+    Int32 noLegendaryStreak;
+    Boolean noBSMode;
+    Double bankedSpinTime;
+    UnityEngine.Random+State spinState;
+}
+//#17
+class Farm{
+    Boolean unlocked;
+    List<PlantData> plants;
+    List<Plot> plots;
+    List<Breed> breeds;
+    List<FarmUpgrade> upgrades;
+    FilterData filter;
+}
+//#18
+class gameVersion{
+    Int32 major;
+    Int32 minor;
+    Int32 patch;
+    Int32 rc;
+}
+//#20
+class List<Boolean>{
+    Boolean _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#21
+class List<MapData>{
+    MapData[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#22
+class List<BuildingType>{
+    BuildingType[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#23
+class List<MaterialData>{
+    MaterialData[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#24
+class List<Upgrade>{
+    Upgrade[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#25
+class FilterData{
+    List<TechTierPair> techFiltered;
+    List<FeatureType> featuresFiltered;
+    Boolean removeSpeed;
+    Boolean removeProd;
+    Boolean removeEff;
+    Boolean removeAffordable;
+}
+//#26
+class List<EncounterData>{
+    EncounterData[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#27
+class List<PlayerPortraits>{
+    PlayerPortraits[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#29
+class List<Int32>{
+    Int32 _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#31
+class WorkOrder{
+    List<WorkOrderRecipe> order;
+    workOrderSize size;
+}
+//#39
+class List<PitItemData>{
+    PitItemData[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#40
+class List<Decoration>{
+    Decoration[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#42
+class List<Relic>{
+    Relic[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#43
+class List<Experiment>{
+    Experiment[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#45
+class List<ExperimentReward>{
+    ExperimentReward[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#46
+class AllBuff{
+    List<Double> featureBuffs;
+    List<List<Double>> buildingBuffs;
+}
+//#49
+class List<Int64>{
+    Int64 _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#50
+class List<TagData>{
+    TagData[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#52
+class List<JournalEntryData>{
+    JournalEntryData[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#54
+class List<PlantData>{
+    PlantData[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#55
+class List<Plot>{
+    Plot[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#56
+class List<Breed>{
+    Breed[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#57
+class List<FarmUpgrade>{
+    FarmUpgrade[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#64
+class List<TechTierPair>{
+    TechTierPair[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#65
+class List<FeatureType>{
+    FeatureType[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#69
+class List<WorkOrderRecipe>{
+    WorkOrderRecipe[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#82
+class List<Double>{
+    Double _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#83
+class List<List<Double>>{
+    List<Double>[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#94
+class MapData{
+    Boolean unlocked;
+    List<TileData> buildings;
+    List<TileData> beacons;
+    List<Int32> clearedTiles;
+    List<Blueprint> blueprints;
+    List<TileData> labs;
+}
+//#115
+class MaterialData{
+    Int64 amount;
+    Boolean goneInfinite;
+    Boolean unlocked;
+    Int64 largestProduction;
+}
+//#265
+class Upgrade{
+    Int32 level;
+}
+//#531
+class EncounterData{
+    Boolean unlocked;
+    Boolean automated;
+    Boolean firstWinAchieved;
+}
+//#536
+class PlayerPortraits{
+    Boolean unlocked;
+}
+//#670
+class PitItemData{
+    Int64 amountYeeted;
+    Boolean goneInfinite;
+}
+//#820
+class Decoration{
+    Int32 decorationID;
+    Single xPos;
+    Single yPos;
+    Single scale;
+    Single rotation;
+    Boolean xFlipped;
+    Boolean yFlipped;
+}
+//#830
+class Relic{
+    Int32 relicID;
+    Int32 level;
+}
+//#854
+class Experiment{
+    Double totalEffortCost;
+    Double curEffort;
+    Double curTime;
+    Double parTime;
+    Double refreshTime;
+    List<Int64> rewards;
+    Boolean isFrozen;
+    string experimentName;
+}
+//#861
+class ExperimentReward{
+    BuildingType affectedBuilding;
+    beaconBonusType affectedBuildingStat;
+    Int32 affectedTier;
+    TechNames affectedTech;
+    FeatureType affectedFeatureStat;
+    Double buffAmount;
+    List<Int64> costs;
+    Boolean isFrozen;
+    Double refreshTime;
+    string rewardName;
+    Double variance;
+}
+//#868
+class JournalEntryData{
+    Boolean unlocked;
+    Boolean neverRead;
+    Int32 highestPageRead;
+}
+//#878
+class PlantData{
+    Double powerLevel;
+    Int64 plantAmount;
+}
+//#890
+class Plot{
+    Int32 plantIndex;
+    Double plotTimer;
+    Boolean isGrowing;
+    Boolean isBreeding;
+    Boolean usedPoop;
+    Boolean usedSuperPoop;
+}
+//#897
+class Breed{
+    Int32 plantIndex1;
+    Int32 plantIndex2;
+    Double breedTime;
+    Boolean isBreeding;
+}
+//#898
+class FarmUpgrade{
+    Int32 level;
+}
+//#1028
+class List<TileData>{
+    TileData[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#1031
+class List<Blueprint>{
+    Blueprint[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#1057
+class WorkOrderRecipe{
+    BuildingType material;
+    Int64 requiredAmount;
+    Int64 givenAmount;
+}
+//#1450
+class TileData{
+    BuildingType building;
+    Double productionTimer;
+    Int32 index;
+    Int64 toAdd;
+    TileDirection direction;
+}
+//#1582
+class Blueprint{
+    string blueprintName;
+    List<BlueprintTileData> tiles;
+    BuildingType spriteReference;
+}
+//#2689
+class List<BlueprintTileData>{
+    BlueprintTileData[] _items;
+    Int32 _size;
+    Int32 _version;
+}
+//#4418
+class BlueprintTileData{
+    Int32 savedIndex;
+    BuildingType building;
+    TileDirection direction;
+}
