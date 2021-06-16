@@ -1,1 +1,1 @@
-Temporrary spoiler encoder page until the SOPython one gets deployed.
+Proof of concept of a pure javascript NGUI save file reader
