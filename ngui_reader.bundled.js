@@ -10740,7 +10740,7 @@ exports.parse = function(unpacker){
     function combine_records(records, top_level_id){
         //combines the elements of the records table into a single object.
 
-        function copy_without_surrogates(obj, depth=0){
+        function copy_without_surrogates(obj){
             
             //recurse through our data structure, replacing all surrogates with actual references, and stripping out all the TypedValue layers.
             if (!obj.hasOwnProperty("strong_type_name")){
@@ -10755,11 +10755,11 @@ exports.parse = function(unpacker){
                     let d = obj.value;
                     if (d.hasOwnProperty("_items")){
                         //C# Lists have an extra layer of indirection we don't care about, may as well remove it here.
-                        return copy_without_surrogates(d["_items"], depth+1);
+                        return copy_without_surrogates(d["_items"]).slice(0, d._size.value);
                     }
                     if (d.hasOwnProperty("value__")){
                         //may as well stirp enums too.
-                        return copy_without_surrogates(d["value__"], depth+1);
+                        return copy_without_surrogates(d["value__"]);
                     }
                     let result = {};
                     for(var key in d){
@@ -10861,8 +10861,9 @@ exports.Unpacker = class {
     }
 
     read_single(){
-        //don't actually know how to parse a single, sorry
-        return `Single(${this.read_int32()})`
+        let result = this.buffer.readFloatLE(this.idx);
+        this.idx += 4;
+        return result;
     }
 
     read_7_bit_int(){ //NRBF 2.1.1.6
